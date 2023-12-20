@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Appointments</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .background-image {
+        background-image: url('C:/xampp/htdocs/ClinicMate/poster.png'); /* Chemin vers l'image d'arrière-plan */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .container {
+        text-align: center;
+        color: #333; /* Couleur du texte pour le contraste avec l'arrière-plan */
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* Fond du container légèrement transparent */
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+      }
+      
+      h1 {
+        margin-top: 0;
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 400px; /* Largeur maximale du formulaire */
+        margin: 0 auto; /* Centrage horizontal du formulaire */
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* Fond du formulaire légèrement transparent */
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      label {
+        margin-bottom: 10px;
+        color: #333; /* Couleur du texte des étiquettes */
+      }
+      
+      input[type="text"], input[type="date"], input[type="time"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc; /* Bordure plus claire */
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        background-color: #fff; /* Fond blanc */
+        color: #333;
+        box-sizing: border-box;
+      }
+      
+      input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #444;
+      }
+      
+      table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        background-color: #fff;
+      }
+      
+      th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      
+      th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      
+      td {
+        font-size: 14px;
+      }
+      
+      .appointment-table {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+      
+      .appointment-table tr:hover {
+        background-color: #f4f4f4;
+      }
+      
+  </style>
+</head>
+<body>
+  <div class="background-image">
+    <div class="container">
+      <h1>Manage Appointments</h1>
+      <form action="addApp.php" method="POST">
+        <label for="patient_name">Patient Name:</label>
+        <input type="text" id="patient_name" name="patient_name" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="doctor_name">Doctor Name:</label>
+        <input type="text" id="doctor_name" name="doctor_name" required>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+
+        <input type="submit" value="Add Appointment">
+      </form>
+
+      <h2>Appointments</h2>
+      <table class="appointment-table">
+        <thead>
+          <tr>
+            <th>Patient Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php include 'displayApp.php'; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    // Code JavaScript pour rendre les cellules du statut éditables au clic et enregistrer les modifications
+    const statusCells = document.querySelectorAll('table#appointments td:nth-child(6)');
+ // Sélectionnez les cellules de statut
+
+    statusCells.forEach(cell => {
+      cell.addEventListener('click', function() {
+        const currentStatus = this.innerText;
+        const input = document.createElement('select');
+        input.innerHTML = `
+          <option value="Confirmed">Confirmed</option>
+          <option value="Pending">Pending</option>
+          <option value="Canceled">Canceled</option>
+        `;
+        input.value = currentStatus;
+
+        input.addEventListener('change', function() {
+          const newStatus = this.value;
+          // Ici, vous pouvez ajouter du code pour mettre à jour le statut dans la base de données
+          // Par exemple, vous pouvez utiliser AJAX pour envoyer la nouvelle valeur au backend
+
+          // Pour l'exemple, mettons à jour le statut dans la cellule actuelle
+          cell.innerText = newStatus;
+        });
+
+        this.innerHTML = ''; // Videz la cellule existante
+        this.appendChild(input); // Ajoutez le menu déroulant pour modifier le statut
+        input.focus(); // Placez le focus sur le menu déroulant
+      });
+    });
+  </script>
+</body>
+</html>

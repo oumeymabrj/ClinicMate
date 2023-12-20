@@ -1,0 +1,103 @@
+<!DOCTYPE html> <html lang="en"> 
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Welcome</title>
+      <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-image: url('C:\\xampp\\htdocs\\ClinicMate\\poster.png');
+            background-size: 100% 100%; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start;
+            flex-direction: column;
+            height: 100vh; }
+    .container {
+        text-align: center;
+        background-color: rgba(222, 217, 217, 0.5);
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        width: 50%; /* Diminuer la largeur du container */
+        margin: 0 auto; /* Centrer le container horizontalement */
+    }
+
+    h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: 12px;
+        color: #252121;
+        margin-bottom: 20px;
+    }
+
+    .authen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px; /* Place .authen au milieu */
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: #444;
+    }
+
+    .social {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Aligne les réseaux sociaux à droite */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .social img {
+        width: 30px;
+        margin: 5px 0;
+    }
+
+</style>
+</head> <body> <div class="container"> <h1>Welcome!</h1> <p class="description"> "Welcome to ClinicMate, your ultimate healthcare companion! We're not just another platform; we're a symphony of innovation and care. Picture this: a world where medical journeys are seamless, where patients connect effortlessly with their doctors, and administrative tasks vanish like a magician's trick. ClinicMate orchestrates this symphony, harmonizing appointments, medical records, and communications into a delightful experience. We're here to redefine healthcare, weaving technology and empathy into the very fabric of your well-being. Join us on this transformative journey toward healthier, happier lives!" </p> </div>
+<div class="authen">
+    <button id="loginButton">Login</button>
+    <button id="signupButton">Signup</button>
+</div>
+
+<div class="social">
+    <p>You can find us in:</p>
+    <img src="C:\\xampp\\htdocs\\ClinicMate\\fb.png" alt="Facebook"> ClinicMate
+    <img src="C:\\xampp\\htdocs\\ClinicMate\\insta.png" alt="Instagram"> ClinicMate
+    <img src="C:\\xampp\\htdocs\\ClinicMate\\mail.png" alt="Mail"> ClinicMate-tn@gmail.com
+</div>
+
+<script>
+    const loginButton = document.getElementById("loginButton");
+    const signupButton = document.getElementById("signupButton");
+
+    loginButton.addEventListener("click", () => {
+        window.location.href = "login.html";
+    });
+
+    signupButton.addEventListener("click", () => {
+        window.location.href = "signup.html";
+    });
+</script>
+</body> </html>

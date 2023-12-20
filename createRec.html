@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Create EMR</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('C:/xampp/htdocs/ClinicMate/poster.png');
+        background-size: cover;
+        background-position: center;
+      }
+      
+      
+      .container {
+        max-width: 600px;
+        width: 100%;
+        padding: 20px;
+        background-color: transparent;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      h1 {
+        margin-top: 0;
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      label {
+        margin-bottom: 10px;
+        color: #333;
+        border: 1px solid rgba(255, 255, 255, 1);
+      }
+      
+      input[type="text"],
+      textarea,
+      input[type="date"],
+      input[type="time"] {
+        width: calc(100% - 22px); /* Prend en compte la largeur de la bordure */
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.8);       ;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); /* Blanc avec une opacité de 0.8 */
+        ;
+        margin-bottom: 10px;
+        background-color: transparent;
+        color: black /* Blanc avec une opacité de 0.8 */
+        ;
+        box-sizing: border-box;
+      }
+      
+      textarea {
+        height: 100px;
+        resize: vertical;
+      }
+      
+      input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #444;
+      }
+    </style>
+  </head>
+    
+<body>
+    <div class="container">
+        <form action="procesEMR.php" method="POST">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="doctor_name">Doctor Name:</label>
+            <input type="text" id="doctor_name" name="doctor_name" required>
+
+            <label for="patient_name">Patient Name:</label>
+            <input type="text" id="patient_name" name="patient_name" required>
+
+            <label for="diagnostics">Diagnostics:</label>
+            <textarea id="diagnostics" name="diagnostics" required></textarea>
+
+            <label for="medicaments">Medicaments:</label>
+            <textarea id="medicaments" name="medicaments" required></textarea>
+
+            <label for="analyses">Analyses:</label>
+            <textarea id="analyses" name="analyses"></textarea>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <input type="submit" value="Create">
+        </form>
+    </div>
+</body>
+
+</html>

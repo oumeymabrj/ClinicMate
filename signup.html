@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ClinicMate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+          }
+          
+          #signup-form {
+            background-image: url("C:\\xampp\\htdocs\\ClinicMate\\poster.png");
+            background-size: cover;
+            background-position: center; 
+            background-repeat: no-repeat; 
+            padding: 40px; 
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            width: 400px; 
+            text-align: center;
+            opacity: 0.9;
+            height: 100vh;
+          }
+          
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          
+          input[type="text"],
+          input[type="email"],
+          input[type="password"],
+          input[type="date"],
+          select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px; 
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            background-color: transparent;
+}
+
+          input[type="checkbox"], input[type="radio"] {
+            margin-bottom: 20px;
+            margin-right: 10px;
+          }
+          
+          input[type="submit"] {
+            background-color: #585256;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+          }
+          
+          input[type="submit"]:hover {
+            background-color: #585256;
+          }
+          
+          #date_de_naissance {
+            padding:0px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;}
+           h1 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+    </style>
+</head>
+<body>
+    <div>
+        <form id="signup-form" action="processSignup.php" method="post">
+            <h2>Signup - Create new account</h2>
+            <label for="username">Username :</label>
+            <input type="text" id="username" name="username"><br><br>
+        
+            <label for="id">ID :</label>
+            <input type="text" id="id" name="id"><br><br>
+        
+            <label for="mail">Email :</label>
+            <input type="email" id="mail" name="mail"><br><br>
+        
+            <h4>Role :</h4>
+            <select id="roles" name="roles"> 
+                <option value="doctor"> Doctor</option>
+                <option value="patient"> Patient</option>
+                <option value="administrative_staff"> Administrative staff</option>
+                <option value="laboratory"> Laboratory</option> 
+            </select>
+    
+            <h4>Gender :</h4>
+            <input type="radio" id="gender" name="genre" value="femme"> She/Her<br><br>
+            <input type="radio" id="gender" name="genre" value="homme"> He/Him<br><br>
+        
+            <label for="date_de_naissance">Date of birthday :</label>
+            <input type="date" id="date_de_naissance" name="date_de_naissance"><br><br> 
+            <label for="mot_de_passe">Password :</label>
+            <input type="password" id="mot_de_passe" name="mot_de_passe"><br><br>
+        
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signup-form');
+        const nom = document.getElementById('nom');
+        const prenom = document.getElementById('prenom');
+        const id = document.getElementById('id');
+        const mail = document.getElementById('mail');
+        const mot_de_passe = document.getElementById('mot_de_passe');
+        const roles = document.getElementById('roles');
+        const genre = document.querySelector('input[name="genre"]:checked');
+        const date_de_naissance = document.getElementById('date_de_naissance');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nom_value = nom.value.trim();
+            const prenom_value = prenom.value.trim();
+            const id_value = id.value.trim();
+            const mail_value = mail.value.trim();
+            const mot_de_passe_value = mot_de_passe.value.trim();
+            const roles_value = roles.value; 
+            const genre_value = genre ? genre.value : '';
+            const date_de_naissance_value = date_de_naissance.value.trim();
+            
+            if (nom_value === '' || prenom_value === '' || id_value === '' || mail_value === '' || mot_de_passe_value === '') {
+                alert('All fields must be completed.');
+                return;
+            }
+            
+            if (mot_de_passe_value.length < 8) {
+                alert('The password must be at least 8 characters long.');
+                return;
+            }
+            
+            if (roles_value === '') {
+                alert('At least one role must be selected.');
+                return;
+            }
+            
+            if (genre_value === '') {
+                alert('Gender must be selected.');
+                return;
+            }
+            
+            if (date_de_naissance_value === '') {
+                alert('The date of birth must be entered.');
+                return;
+            }
+            
+            const user = {
+                nom: nom_value,
+                prenom: prenom_value,
+                id: id_value,
+                mail: mail_value,
+                mot_de_passe: mot_de_passe_value,
+                roles: roles_value,
+                genre: genre_value,
+                date_de_naissance: date_de_naissance_value,
+            };
+            
+            alert('Form saved successfully!');
+        });
+    </script>
+</body>
+</html>
